@@ -5,6 +5,7 @@ import type { RootState } from "./app/store";
 import { RealtimeList } from "./components/RealtimeList/RealtimeList";
 import { Loader } from "./components/Loader/Loader";
 import { StatusIndicator } from "./components/StatusIndicator/StatusIndicator";
+import { SubscriptionsManager } from "./components/SubscriptionsManager/SubscriptionsManager";
 
 export const App = () => {
   const connected = useSelector((state: RootState) => state.crypto.connected);
@@ -17,7 +18,15 @@ export const App = () => {
   return (
     <main style={{ padding: "0 1rem" }}>
       <StatusIndicator online={connected} />
-      {connected ? <RealtimeList /> : <Loader />}
+
+      {connected ? (
+        <>
+          <SubscriptionsManager />
+          <RealtimeList />
+        </>
+      ) : (
+        <Loader />
+      )}
     </main>
   );
 };

@@ -26,6 +26,7 @@ export const ListItem = memo(({ symbol, price }: ListItemProps) => {
         alignContent: "center",
         borderRadius: "4px",
         background: "#2e605c",
+        transition: "border-color 100ms",
       }}
     >
       {symbol.replace("-USD", "")} {price}

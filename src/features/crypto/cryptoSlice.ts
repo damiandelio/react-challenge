@@ -25,14 +25,28 @@ const cryptoSlice = createSlice({
       const { symbol, price } = action.payload;
       state.cryptos[symbol] = price;
     },
+
     setConnected(state, action: PayloadAction<boolean>) {
       state.connected = action.payload;
     },
+
     setError(state, action: PayloadAction<string | null>) {
       state.error = action.payload;
+    },
+
+    // Adds or removes cryptos
+    conciliateSubscriptions(state, action: PayloadAction<string[]>) {
+      const productIds = action.payload;
+      const cryptosCopy = state.cryptos;
+      state.cryptos = {};
+
+      productIds.forEach((productId) => {
+        state.cryptos[productId] = cryptosCopy[productId] ?? "";
+      });
     },
   },
 });
 
-export const { setPrice, setConnected, setError } = cryptoSlice.actions;
+export const { setPrice, setConnected, setError, conciliateSubscriptions } =
+  cryptoSlice.actions;
 export default cryptoSlice.reducer;

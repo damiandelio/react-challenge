@@ -9,9 +9,11 @@ export const StatusIndicator = memo(({ online }: StatusIndicator) => {
     <div
       style={{
         position: "fixed",
-        top: "1rem",
+        padding: "1rem 1rem 1rem 0",
         display: "flex",
         alignItems: "center",
+        borderRadius: "0 25px 25px 0",
+        background: "rgba(29, 59, 57, 0.85)",
       }}
     >
       <div

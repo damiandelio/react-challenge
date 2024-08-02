@@ -4,29 +4,19 @@ import {
   setPrice,
   setConnected,
   setError,
+  conciliateSubscriptions,
 } from "../features/crypto/cryptoSlice";
-import { COINBASE_PRODUCTS } from "../utils/coinbaseProducts";
+import { COINBASE_PRODUCT_LIST } from "../utils/coinbaseProducts";
 
-enum CHANNEL {
+enum MESSAGE_TYPE {
   Ticker = "ticker",
+  Subscriptions = "subscriptions",
 }
 
-interface CryptoPriceData {
-  best_ask: string;
-  best_ask_size: string;
-  best_bid: string;
-  best_bid_size: string;
-  high_24h: string;
-  last_size: string;
-  low_24h: string;
-  open_24h: string;
-  price: string;
-  product_id: string;
-  sequence: number;
-  side: string;
-  time: string;
-  trade_id: number;
-  type: CHANNEL;
+interface MessageData {
+  type: MESSAGE_TYPE;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [key: string]: any;
 }
 
 export const subscribe = (productIds: string[]) =>
@@ -34,7 +24,7 @@ export const subscribe = (productIds: string[]) =>
     type: "subscribe",
     channels: [
       {
-        name: CHANNEL.Ticker,
+        name: MESSAGE_TYPE.Ticker,
         product_ids: productIds,
       },
     ],
@@ -45,7 +35,7 @@ export const unsubscribe = (productIds: string[]) =>
     type: "unsubscribe",
     channels: [
       {
-        name: CHANNEL.Ticker,
+        name: MESSAGE_TYPE.Ticker,
         product_ids: productIds,
       },
     ],
@@ -56,18 +46,36 @@ export const ws = new ReconnectingWebSocket(
 );
 
 ws.onopen = () => {
-  const productIds = COINBASE_PRODUCTS.map((product) => product.id);
-  ws.send(subscribe(productIds));
-
+  ws.send(subscribe(COINBASE_PRODUCT_LIST));
   store.dispatch(setConnected(true));
 };
 
 ws.onmessage = (event) => {
-  const data: CryptoPriceData = JSON.parse(event.data);
+  const data: MessageData = JSON.parse(event.data);
 
-  if (data.type === CHANNEL.Ticker) {
-    const { product_id, price } = data;
-    store.dispatch(setPrice({ symbol: product_id, price }));
+  switch (data.type) {
+    case MESSAGE_TYPE.Ticker: {
+      const { product_id, price } = data;
+      store.dispatch(setPrice({ symbol: product_id, price }));
+      break;
+    }
+
+    case MESSAGE_TYPE.Subscriptions: {
+      if (data.channels?.length === 0) {
+        // Unsubscribe all
+        store.dispatch(conciliateSubscriptions([]));
+      } else {
+        const subscription = data.channels?.find(
+          ({ name }: { name: string }) => name === MESSAGE_TYPE.Ticker
+        );
+
+        if (Array.isArray(subscription?.product_ids)) {
+          store.dispatch(conciliateSubscriptions(subscription.product_ids));
+        }
+      }
+
+      break;
+    }
   }
 };
 

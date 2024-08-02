@@ -12,7 +12,7 @@ export const RealtimeList = memo(() => {
         display: "grid",
         gridTemplateColumns: "repeat(3, 1fr)",
         gap: "0.5rem",
-        padding: "4rem 0",
+        padding: "3rem 0",
         maxWidth: "60rem",
         margin: "auto",
       }}
