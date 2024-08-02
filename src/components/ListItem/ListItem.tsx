@@ -1,5 +1,7 @@
 import { memo, useRef } from "react";
 
+import styles from "./ListItem.module.css";
+
 interface ListItemProps {
   symbol: string;
   price: string;
@@ -17,18 +19,7 @@ export const ListItem = memo(({ symbol, price }: ListItemProps) => {
   }
 
   return (
-    <li
-      ref={itemRef}
-      style={{
-        height: "4rem",
-        border: "2px solid transparent",
-        padding: "0 1rem",
-        alignContent: "center",
-        borderRadius: "4px",
-        background: "#2e605c",
-        transition: "border-color 100ms",
-      }}
-    >
+    <li ref={itemRef} className={styles.item}>
       {symbol.replace("-USD", "")} {price}
     </li>
   );

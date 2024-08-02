@@ -1,0 +1,15 @@
+.statusIndicator {
+  position: fixed;
+  padding: 1rem 1rem 1rem 0;
+  display: flex;
+  align-items: center;
+  border-radius: 0 25px 25px 0;
+  background: rgba(29, 59, 57, 0.85);
+}
+
+.bullet {
+  height: 1rem;
+  width: 1rem;
+  border-radius: 100%;
+  margin-right: 0.5rem;
+}
