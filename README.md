@@ -2,7 +2,7 @@
 
 ## Task Description
 
-[Challenge Part 1](https://github.com/emdx-dex/react-challenge?tab=readme-ov-file#part-1-pixel-perfect-component-implementation)
+[Challenge Part 1](https://github.com/damiandelio/react-challenge/tree/main/assignment#part-1-pixel-perfect-component-implementation)
 Create a pixel-perfect controlled input component based on the provided PDF design guidelines. This component should be implemented in a Storybook and deployed for browser access.
 
 ## What was done?
@@ -61,7 +61,7 @@ npm run storybook
 
 ## Task Description
 
-[Challenge Part 2](https://github.com/emdx-dex/react-challenge?tab=readme-ov-file#part-2-real-time-crypto-price-tracker)
+[Challenge Part 2](https://github.com/damiandelio/react-challenge/tree/main/assignment#part-2-real-time-crypto-price-tracker)
 Develop a ReactJS application that tracks real-time cryptocurrency prices using WebSockets and manages state with Redux.
 
 ## What was done?
@@ -79,7 +79,7 @@ Develop a ReactJS application that tracks real-time cryptocurrency prices using 
 
 ## Online preview
 
-[Live preview on Vercel](https://react-challenge-git-part2-damin-de-lios-projects.vercel.app/)
+[Live preview on Vercel](https://react-challenge-gilt.vercel.app/)
 
 ## How to run locally?
 
