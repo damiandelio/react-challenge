@@ -1,125 +1,118 @@
-# Challenge: Senior ReactJS Developer
+# EMDX Challenge • Part 1
 
-## Part 1: Pixel Perfect Component Implementation
+## Task Description
 
-### Objective
-
+[Challenge Part 1](https://github.com/emdx-dex/react-challenge?tab=readme-ov-file#part-1-pixel-perfect-component-implementation)
 Create a pixel-perfect controlled input component based on the provided PDF design guidelines. This component should be implemented in a Storybook and deployed for browser access.
 
-### Requirements
+## What was done?
 
-1. **Storybook Setup**
-   - Mount the component into a Storybook page.
-   - Deploy the Storybook to be accessible via a browser.
+- Setup Vite and Storybook.
+- Created a [Dropdown component](https://github.com/damiandelio/react-challenge/blob/451cc15e4da150e5348fc72f475ebf1a14da885d/src/components/Dropdown/Dropdown.tsx).
+- Created the Dropdown story.
+- Setup Github actions to deploy Storybook to Github Pages.
 
-2. **Controlled Input Component**
-   - The component should be a controlled input.
-   - The API must allow developers to send options and retrieve values.
-   - Handle single and multi-selection modes.
+## Screenshots
 
-3. **States Management**
-   - Implement disabled and error states.
-   - Provide context about decisions made and chosen approach.
+![image](https://github.com/user-attachments/assets/f79b6b16-a8e0-412c-aa12-db12dcd47632)
+![image](https://github.com/user-attachments/assets/51b05be3-870f-4ec4-a20b-b02b33bf52b6)
+![image](https://github.com/user-attachments/assets/8175a6fb-d7c1-4386-bd39-a53f5e2c59b7)
 
-4. **Styling**
-   - Follow the pixel-perfect design as specified in the PDF.
-   - Use plain CSS, styled components, Tailwind, or any other preferred method for managing styles.
+## Online version
 
-5. **Code Quality**
-   - Ensure the component has clean and readable code.
-   - Maintain a high standard of code quality and best practices.
+[Storybook on Github Pages](https://damiandelio.github.io/react-challenge)
 
-### Design Guidelines
+## How to run locally?
 
-- **Select Box**
-  - Background: #ffffff
-  - Border: 1px #888888
-  - Border radius: 4px
-  - Padding left/right: 12px
-  - Padding top/bottom: 7px
-  - Height: 32px
-  - Width: 252px
-  - Font face: Open Sans Regular
-  - Font size: 12px
-  - Line height: 16px
-  - Color: #888888
+Node version >=18
 
-- **Caret**
-  - Width: 12px
-  - Height: 8px
-  - Color: #888888
-  - Padding top/bottom: 11px
+On the root directory run the following command:
 
-- **Menu Box**
-  - Background: #cccccc
-  - Border: 1px #222222
-  - Border radius: 4px
-  - Width: 100%
-  - Height: 32px
+```cmd
+npm i
+npm run storybook
+```
 
-- **Menu Item**
-  - Background: #ffffff
-  - Color: #222222
-  - Font face: Open Sans Regular
-  - Font size: 12px
-  - Line height: 16px
+## How to test?
 
-### Submission Guidelines
+- Go to the [example page](https://damiandelio.github.io/react-challenge/?path=/story/components-dropdown-example--default).
+- Try selecting and removing elements from the dropdown.
+- Try using `tab` and `space` key to navigate and select on the dropdown menu.
 
-- Fork this Repo
-- Complete the component and commit your code.
-- Submit a pull request with a detailed README explaining your approach, decisions made, and instructions on how to run the component in Storybook.
-- Ensure your code is well-documented and follows best practices.
+## Decisions made
+
+- Created an interface compatible with react-hook-form's [useController](https://react-hook-form.com/api/usecontroller) hook.
+- Implemented checkboxes to enable tab navigation inside the dropdown.
+- Accessibility attributes were considered.
+- Utilized `memo()` for component memoization.
+- Provided a `classes` prop to allow overriding of styles.
+- When the dropdown is open, the caret position is inverted (this wasn't specified in the designs).
+- It is on the programmer to implement the `onChange` callback to set the state values. An example can be found [here](https://github.com/damiandelio/react-challenge/blob/451cc15e4da150e5348fc72f475ebf1a14da885d/src/components/Dropdown/example/ExamplePage.tsx#L52).
+
+## Possible improvements
+
+- Scope `reset.css` to the component to avoid global style conflicts.
+- Add support for disabled and error states.
+- Add a `closeOnSelect` boolean prop to indicate if to close or not the menu when an option is clicked.
 
 ---
 
-## Part 2: Real-Time Crypto Price Tracker
+# EMDX Challenge • Part 2
 
-### Objective
+## Task Description
 
+[Challenge Part 2](https://github.com/emdx-dex/react-challenge?tab=readme-ov-file#part-2-real-time-crypto-price-tracker)
 Develop a ReactJS application that tracks real-time cryptocurrency prices using WebSockets and manages state with Redux.
 
-### Requirements
+## What was done?
 
-1. **Project Setup**
-   - Initialize a new ReactJS project.
-   - Set up Redux for state management.
-   - Configure WebSocket connection for real-time data.
+- **Redux Setup**: Integrated Redux for state management.
+- **Real-time Crypto Prices**: Implemented a real-time cryptocurrency price list using the Coinbase WebSocket API.
+- **Subscription Management**: Added functionality to add or remove subscriptions, allowing users to control which cryptocurrencies they receive data updates for.
+- **Batch Subscription Control**: Included a button to subscribe or unsubscribe to all cryptocurrencies simultaneously.
 
-2. **Real-Time Data Integration**
-   - Connect to a public cryptocurrency WebSocket API to receive real-time price updates.
-   - Display a list of selected cryptocurrencies and their current prices.
-   - Ensure the UI updates in real-time as new data is received.
+## Screenshots
 
-3. **State Management with Redux**
-   - Use Redux to manage the state of the application.
-   - Store real-time data in the Redux store.
-   - Implement actions and reducers to handle incoming data and update the state accordingly.
+![image](https://github.com/user-attachments/assets/4844ba04-70dd-4874-b079-dd9132bc0ea9)
+![image](https://github.com/user-attachments/assets/ee705601-1cf3-4774-8431-191c72317e3c)
+![image](https://github.com/user-attachments/assets/a43ba318-cedd-4f76-ae85-b44d7bcc40d9)
 
-4. **UI Design**
-   - Create a user-friendly interface to display the real-time prices.
-   - Include features to add/remove cryptocurrencies from the list.
-   - Ensure the application is responsive and works well on different devices and screen sizes.
+## Online preview
 
-5. **Performance Optimization**
-   - Ensure the application is performant and can handle frequent updates without lag.
-   - Optimize components to re-render efficiently.
+[Live preview on Vercel](https://react-challenge-git-part2-damin-de-lios-projects.vercel.app/)
 
-6. **Error Handling**
-   - Implement error handling for WebSocket connection issues and data fetching errors.
-   - Display appropriate error messages to the user.
+## How to run locally?
 
-### Submission Guidelines
+1. **Set up environment variables**:
 
-- Fork the Repo
-- Complete the project and commit your code.
-- Submit a pull request with a detailed README explaining your approach, any challenges faced, and instructions on how to run the application.
-- Ensure your code is well-documented and follows best practices.
+- Create a `.env` file in the root directory
+- Add the `VITE_COINBASE_WS_URL` variable to the `.env` file:
 
-#### Bonus points
+```
+VITE_COINBASE_WS_URL="wss://ws-feed.exchange.coinbase.com"
+```
 
-- Add Dockerfile recipe to seamless run the application using Docker runtime.
+3. **Install dependencies and start the development server**:
 
-##### Misc
+- In the root directory, run the following commands
 
-Free API/WS endpoints can be found here: https://www.okx.com/okx-api
+```cmd
+npm install
+npm run dev
+```
+
+## How to test?
+
+1. Navigate to the Home Screen. Upon loading, all cryptocurrencies will be tracked by default.
+
+2. Unsubscribe from a Single Cryptocurrency. Click on any cryptocurrency name at the top of the screen. The button should turn red, and the selected cryptocurrency should be removed from the price list.
+
+3. Unsubscribe from All Cryptocurrencies. Click the "Unsubscribe all" button. All cryptocurrencies should be unsubscribed, and the button text should change to "Subscribe all".
+
+4. Subscribe to All Cryptocurrencies. Click the "Subscribe all" button to re-subscribe to all cryptocurrencies.
+
+## Possible improvements
+
+- Implement list virtualization to improve performance when rendering the crypto prices, using a library such as [@tanstack/react-virtual](https://www.npmjs.com/package/@tanstack/react-virtual).
+- Error Handling: Display error messages to the user when a connection error occurs.
+- Fetch Coinbase products dynamically when the app runs, instead of relying on a static asset (`coinbaseProducts.ts`).
