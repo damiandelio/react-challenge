@@ -1,0 +1,25 @@
+.subscriptionsManager {
+  padding-top: 3.5rem;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.button {
+  padding: 0.3rem 0.5rem;
+  margin-top: 1rem;
+  background: #2e605c;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.bullet label {
+  display: block;
+  cursor: pointer;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+}
